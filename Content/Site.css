@@ -1,21 +1,216 @@
-﻿/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    margin-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+/* Tenant Onboarding look: cool grey ground, navy header, single teal accent */
+:root {
+    --ink: #0F1B2D;
+    --muted: #5B6676;
+    --ground: #F4F6F8;
+    --card: #FFFFFF;
+    --line: #DDE2E8;
+    --line-soft: #EDF0F3;
+    --field-line: #C3CAD4;
+    --accent: #0B6B66;
+    --accent-dark: #084F4B;
+    --danger: #B42318;
 }
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
-select,
-textarea {
-    max-width: 280px;
+body {
+    margin: 0;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--ground);
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .body-content {
-        padding: 0;
-    }
+a { color: var(--accent); }
+a:hover { color: var(--accent-dark); }
+
+.mono { font-family: 'IBM Plex Mono', monospace; }
+
+/* Header */
+.app-header { background: var(--ink); color: #fff; }
+.app-header-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+    min-height: 64px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+.app-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+}
+.app-brand:hover { color: #fff; }
+.app-nav { display: flex; gap: 24px; }
+.app-nav a {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 20px 0;
+    border-bottom: 2px solid transparent;
+}
+.app-nav a:hover { color: #fff; border-bottom-color: var(--accent); }
+
+/* Layout */
+.app-main {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    box-sizing: border-box;
+}
+.app-footer { color: var(--muted); font-size: 13px; padding-top: 24px; }
+
+.page-title { margin: 0 0 4px; font-size: 28px; font-weight: 600; letter-spacing: -0.02em; }
+.page-sub { margin: 0; color: var(--muted); font-size: 15px; }
+.page-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* Buttons */
+.btn-accent, .btn-ghost, .btn-link-danger, .btn-link-plain {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    font: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn-accent {
+    padding: 0 20px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #fff;
+}
+.btn-accent:hover { background: var(--accent-dark); color: #fff; }
+.btn-ghost {
+    padding: 0 20px;
+    border: 1px solid var(--field-line);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--ink);
+}
+.btn-ghost:hover { background: var(--ground); color: var(--ink); }
+.btn-link-plain, .btn-link-danger { padding: 0 14px; border: 0; background: transparent; }
+.btn-link-danger { color: var(--danger); }
+.btn-link-danger:hover { color: #7A1A12; }
+
+/* Alerts */
+.notice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+.notice-success { background: #E3F3F1; color: #08504C; }
+.notice-danger { background: #FDECEA; color: #7A1A12; }
+
+/* Search bar */
+.search-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.search-bar .field { flex: 1 1 280px; }
+
+/* Fields */
+.field, .form-card input[type=text], .form-card input[type=password] {
+    width: 100%;
+    max-width: none;
+    min-height: 44px;
+    box-sizing: border-box;
+    padding: 0 14px;
+    border: 1px solid var(--field-line);
+    border-radius: 8px;
+    background: var(--card);
+    font: inherit;
+    font-size: 14px;
+    color: var(--ink);
+}
+.field:focus, .form-card input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+.field[readonly] { background: var(--line-soft); color: var(--muted); }
+.field-label { display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; }
+.field-hint { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+
+/* Form card */
+.form-card {
+    max-width: 760px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 32px;
+}
+.form-section { border: 0; margin: 0 0 32px; padding: 0; }
+.form-section legend {
+    padding: 0;
+    margin-bottom: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    float: none;
+    width: auto;
+}
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.form-actions { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 24px; border-top: 1px solid var(--line-soft); }
+@media (max-width: 575px) {
+    .form-grid { grid-template-columns: minmax(0, 1fr); }
+    .form-card { padding: 20px; }
+}
+
+/* Table */
+.table-card { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+.tenant-table { width: 100%; min-width: 860px; border-collapse: collapse; font-size: 14px; }
+.tenant-table th {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
+}
+.tenant-table td { padding: 16px 20px; border-bottom: 1px solid var(--line-soft); }
+.tenant-table tr:last-child td { border-bottom: 0; }
+.tenant-table .actions { text-align: right; white-space: nowrap; }
+.tenant-empty { padding: 32px 20px; color: var(--muted); text-align: center; }
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: #EEF1F5;
+    border-radius: 999px;
+    color: #46515F;
+    font-size: 12px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
 }

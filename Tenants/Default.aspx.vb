@@ -22,7 +22,7 @@ Public Class Tenants_Default
 
     Private Sub ShowMessage(text As String, success As Boolean)
         MessagePanel.Visible = True
-        MessagePanel.CssClass = If(success, "alert alert-success", "alert alert-danger")
+        MessagePanel.CssClass = If(success, "notice notice-success", "notice notice-danger")
         MessageLiteral.Text = Server.HtmlEncode(text)
     End Sub
 

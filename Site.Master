@@ -12,6 +12,8 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
@@ -37,27 +39,21 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" runat="server" href="~/">Tenant Onboarding</a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Tenants">Tenants</a></li>
-                    </ul>
-                </div>
+        <header class="app-header">
+            <div class="app-header-inner">
+                <a class="app-brand" runat="server" href="~/Tenants">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#3FB8B0" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="10" height="10" rx="2" /><rect x="15" y="3" width="10" height="10" rx="2" /><rect x="3" y="15" width="10" height="10" rx="2" /><path d="M20 15v10M15 20h10" /></svg>
+                    Tenant Onboarding
+                </a>
+                <nav class="app-nav" aria-label="Main">
+                    <a runat="server" href="~/Tenants">Tenants</a>
+                </nav>
             </div>
-        </nav>
-        <div class="container body-content">
+        </header>
+        <div class="app-main">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Tenant Onboarding</p>
-            </footer>
+            <footer class="app-footer">&copy; <%: DateTime.Now.Year %> - Tenant Onboarding</footer>
         </div>
     </form>
     <asp:PlaceHolder runat="server">

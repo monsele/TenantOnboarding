@@ -1,54 +1,66 @@
 <%@ Page Title="Tenant" Language="VB" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Edit.aspx.vb" Inherits="TenantOnboarding.Tenants_Edit" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <main class="pt-4" style="max-width: 720px;">
-        <h1 class="h3 mb-1"><asp:Literal ID="HeadingLiteral" runat="server" /></h1>
-        <p class="text-muted">Connection details the platform uses to reach this tenant's database.</p>
+    <main>
+        <a class="back-link" href="<%: ResolveUrl("~/Tenants") %>">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2L4 7l5 5" /></svg>
+            All tenants
+        </a>
+        <h1 class="page-title" style="margin-top: 8px"><asp:Literal ID="HeadingLiteral" runat="server" /></h1>
+        <p class="page-sub" style="margin-bottom: 24px">Connection details the platform uses to reach this tenant's database.</p>
 
-        <asp:Panel ID="ErrorPanel" runat="server" Visible="false" CssClass="alert alert-danger" role="alert">
+        <asp:Panel ID="ErrorPanel" runat="server" Visible="false" CssClass="notice notice-danger" role="alert" style="max-width: 760px">
             <asp:Literal ID="ErrorLiteral" runat="server" />
         </asp:Panel>
-        <asp:ValidationSummary runat="server" CssClass="alert alert-danger" HeaderText="Please fix the following:" />
+        <asp:ValidationSummary runat="server" CssClass="notice notice-danger" HeaderText="Please fix the following:" style="max-width: 760px; display: block" />
 
-        <div class="card card-body">
-            <div class="mb-3">
-                <label class="form-label" for="<%: TenantIdBox.ClientID %>">Tenant ID</label>
-                <asp:TextBox ID="TenantIdBox" runat="server" CssClass="form-control" MaxLength="50" />
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="TenantIdBox" ErrorMessage="Tenant ID is required." Display="None" />
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="<%: TenantNameBox.ClientID %>">Tenant name</label>
-                <asp:TextBox ID="TenantNameBox" runat="server" CssClass="form-control" MaxLength="200" />
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="TenantNameBox" ErrorMessage="Tenant name is required." Display="None" />
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="form-label" for="<%: DatabaseNameBox.ClientID %>">Database name</label>
-                    <asp:TextBox ID="DatabaseNameBox" runat="server" CssClass="form-control" MaxLength="128" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="DatabaseNameBox" ErrorMessage="Database name is required." Display="None" />
+        <div class="form-card">
+            <fieldset class="form-section">
+                <legend>Tenant</legend>
+                <div class="form-grid">
+                    <div>
+                        <asp:Label runat="server" AssociatedControlID="TenantIdBox" CssClass="field-label" Text="Tenant ID" />
+                        <asp:TextBox ID="TenantIdBox" runat="server" CssClass="field mono" MaxLength="50" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="TenantIdBox" ErrorMessage="Tenant ID is required." Display="None" />
+                    </div>
+                    <div>
+                        <asp:Label runat="server" AssociatedControlID="TenantNameBox" CssClass="field-label" Text="Tenant name" />
+                        <asp:TextBox ID="TenantNameBox" runat="server" CssClass="field" MaxLength="200" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="TenantNameBox" ErrorMessage="Tenant name is required." Display="None" />
+                    </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label class="form-label" for="<%: DatabaseServerBox.ClientID %>">Database server name</label>
-                    <asp:TextBox ID="DatabaseServerBox" runat="server" CssClass="form-control" MaxLength="255" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="DatabaseServerBox" ErrorMessage="Database server name is required." Display="None" />
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Database connection</legend>
+                <div class="form-grid">
+                    <div>
+                        <asp:Label runat="server" AssociatedControlID="DatabaseNameBox" CssClass="field-label" Text="Database name" />
+                        <asp:TextBox ID="DatabaseNameBox" runat="server" CssClass="field mono" MaxLength="128" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="DatabaseNameBox" ErrorMessage="Database name is required." Display="None" />
+                    </div>
+                    <div>
+                        <asp:Label runat="server" AssociatedControlID="DatabaseServerBox" CssClass="field-label" Text="Database server name" />
+                        <asp:TextBox ID="DatabaseServerBox" runat="server" CssClass="field mono" MaxLength="255" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="DatabaseServerBox" ErrorMessage="Database server name is required." Display="None" />
+                    </div>
+                    <div>
+                        <asp:Label runat="server" AssociatedControlID="DatabaseUserBox" CssClass="field-label" Text="Database user ID" />
+                        <asp:TextBox ID="DatabaseUserBox" runat="server" CssClass="field mono" MaxLength="128" autocomplete="off" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="DatabaseUserBox" ErrorMessage="Database user ID is required." Display="None" />
+                    </div>
+                    <div>
+                        <asp:Label runat="server" AssociatedControlID="DatabasePasswordBox" CssClass="field-label" Text="Database password" />
+                        <asp:TextBox ID="DatabasePasswordBox" runat="server" CssClass="field" TextMode="Password" autocomplete="new-password" />
+                        <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="DatabasePasswordBox" ErrorMessage="Database password is required." Display="None" />
+                        <p class="field-hint">Stored encrypted (AES-256).<asp:Literal ID="PasswordHintLiteral" runat="server" /></p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="form-label" for="<%: DatabaseUserBox.ClientID %>">Database user ID</label>
-                    <asp:TextBox ID="DatabaseUserBox" runat="server" CssClass="form-control" MaxLength="128" autocomplete="off" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="DatabaseUserBox" ErrorMessage="Database user ID is required." Display="None" />
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label class="form-label" for="<%: DatabasePasswordBox.ClientID %>">Database password</label>
-                    <asp:TextBox ID="DatabasePasswordBox" runat="server" CssClass="form-control" TextMode="Password" autocomplete="new-password" />
-                    <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="DatabasePasswordBox" ErrorMessage="Database password is required." Display="None" />
-                    <div class="form-text">Stored encrypted (AES-256).<asp:Literal ID="PasswordHintLiteral" runat="server" /></div>
-                </div>
-            </div>
-            <div class="d-flex gap-2">
-                <asp:Button ID="SaveButton" runat="server" Text="Save" CssClass="btn btn-primary" />
-                <a class="btn btn-outline-secondary" href="<%: ResolveUrl("~/Tenants") %>">Cancel</a>
+            </fieldset>
+
+            <div class="form-actions">
+                <asp:Button ID="SaveButton" runat="server" Text="Save tenant" CssClass="btn-accent" />
+                <a class="btn-ghost" href="<%: ResolveUrl("~/Tenants") %>">Cancel</a>
             </div>
         </div>
     </main>
