@@ -201,10 +201,31 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Tenants\Default.aspx" />
+    <Content Include="Tenants\Edit.aspx" />
+    <Content Include="Database\Tenants.sql" />
+    <Content Include="Security\README.md" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Security\PasswordCryptor.vb" />
+    <Compile Include="Models\Tenant.vb" />
+    <Compile Include="Data\TenantRepository.vb" />
+    <Compile Include="Tenants\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tenants\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Tenants\Edit.aspx.designer.vb">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tenants\Edit.aspx.vb">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="About.aspx.designer.vb">
